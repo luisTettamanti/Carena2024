@@ -3,9 +3,10 @@ body {
     padding: 0;
     min-height: 100vh;
     box-sizing: border-box;
+    background-color: #EFE1CE;
     }
 
-a:hover {
+a.menuSecciones:hover {
     font-weight: bold;
 }
 

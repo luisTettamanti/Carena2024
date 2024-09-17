@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div id="contenido" class="container">
+
+{#        <h3 class="col display-4 my-3">Areas</h3>#}
+{#        <div class="col d-flex justify-content-end align-items-end mb-3">#}
+{#            <a class="btn btn-outline-primary" href="/areas/areaNuevo/">Nueva Area</a>#}
+{#        </div>#}
+
+        <div id="titulo" class="row pb-3">
+            <h2 class="col-10">Listado de Proyectos</h2>
+            <div class="col-2 d-flex justify-content-end align-items-end mb-3">
+                <a class="btn btn-primary" href="/proyectoAgregar/">Nuevo...</a>
+            </div>
+        </div>
+
+        <table class="table table-striped">
+            {% for p in proyectos %}
+            <tr>
+                <td>{{ p.id }}</td>
+                <td>{{ p.nombre }}</td>
+                <td class="d-none d-md-table-cell">{{ p.imagen }}</td>
+                <td class="d-none d-sm-table-cell">{{ p.titulo }}</td>
+                <td class="d-none d-md-table-cell">{{ p.link }}</td>
+                <td>
+                    <div class="d-flex justify-content-end align-items-end mb-3">
+
+{#                        <a class="btn btn-primary" href="/proyectoModificar/{{ p.id }}/">Modificar</a>#}
+{#                        <a class="btn btn-primary" href="/proyectoForm/{{ p.id }}/">Modificar</a>#}
+                        <a class="btn btn-primary" href="/proyectoConLista/{{ p.id }}/">Modificar</a>
+
+                        <a class="btn btn-danger ms-1" href="/proyectoBorrar/{{ p.id }}/">Borrar</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

@@ -3,17 +3,18 @@
 {% block content %}
     <div id="contenido" class="container">
         <div class="row">
-            <div class="d-none d-lg-block col-lg-2 p-3" style="background-color: lightgray">
+            <div class="d-none d-lg-block col-lg-2 p-3" style="position: relative;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: {{ proyecto.color }}; opacity: 0.2; z-index: -1; pointer-events: none;"></div>
                 {% for s in secciones %}
-                    <p><a class="text-decoration-none text-dark" href="{{ s.link }}/{{ s.id }}">{{ s.titulo }}</a></p>
-                {%  endfor %}
+                    <p><a class="menuSecciones text-decoration-none text-dark" href="{{ s.link }}/{{ s.id }}">{{ s.titulo }}</a></p>
+                {% endfor %}
             </div>
-            <div class="col-md-5">
-                <h5 class="bg-primary"><a class="text-white text-decoration-none" href="{{ proyecto.link }}/{{ proyecto.id }}">{{ proyecto.nombre }}</a></h5>
-                <h3 class="text-primary pb-2">{{ proyecto.titulo }}</h3>
+            <div class="col-md-6 col-lg-6">
+                <h5 style="background-color: {{ proyecto.color }};"><a class="text-white text-decoration-none" href="{{ proyecto.link }}/{{ proyecto.id }}">{{ proyecto.nombre }}</a></h5>
+                <h3 style="color: {{ proyecto.color }};" class="pb-2">{{ proyecto.titulo }}</h3>
                 {{ proyecto.descripcion|safe }}
             </div>
-            <div class="col-md-5" id="imagen"
+            <div class="col-md-6 col-lg-4" id="imagen"
                  style="background-image: url('{% static proyecto.imagen %}');
                          background-position: center;
                          height: 300px;
@@ -25,7 +26,7 @@
             <div class="d-block d-lg-none col-12 pt-3 text-secondary">
                 <ul class="lista-flechas">
                 {% for s in secciones %}
-                    <li><a class="text-decoration-none text-secondary" href="{{ s.link }}/{{ s.id }}">{{ s.titulo }}</a></li>
+                    <li><a style="color: {{ proyecto.color }};" class="menuSecciones text-decoration-none" href="{{ s.link }}/{{ s.id }}">{{ s.titulo }}</a></li>
                 {% endfor %}
                 </ul>
             </div>

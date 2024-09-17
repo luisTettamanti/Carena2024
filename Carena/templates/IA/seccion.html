@@ -4,10 +4,10 @@
     <div id="contenido" class="container">
         <div class="row">
             <div class="col-md-8">
-                <h3 class="text-primary pb-2">{{ seccion.titulo }}</h3>
+                <h3 style="color: {{ seccion.idProyecto.color }};" class="pb-2">{{ seccion.titulo }}</h3>
                 {{ seccion.descripcion|safe }}
                 {% for a in articulos %}
-                    <h4 class="text-primary pb-2">{{ a.titulo }}</h4>
+                    <h4 style="color: {{ seccion.idProyecto.color }};" class="pb-2">{{ a.titulo }}</h4>
                     {{ a.descripcion|safe }}
                 {% endfor %}
             </div>
@@ -23,7 +23,7 @@
             <div class="col-12 pt-3 text-secondary">
                 <ul class="lista-flechas">
                 {% for s in secciones %}
-                    <li><a class="text-decoration-none text-secondary" href="{{ s.link }}/{{ s.id }}">{{ s.titulo }}</a></li>
+                    <li><a style="color: {{ seccion.idProyecto.color }};" class="menuSecciones text-decoration-none" href="{{ s.link }}/{{ s.id }}">{{ s.titulo }}</a></li>
                 {% endfor %}
                 </ul>
             </div>

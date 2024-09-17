@@ -24,7 +24,7 @@
 </head>
 <body>
     <div class="d-flex flex-column min-vh-100">
-        <header class="container-fluid bg-dark text-white text-center" style="padding-top: 3rem;">
+        <header class="container-fluid bg-dark text-center" style="color:#EFE1CE; padding-top: 3rem;">
             <p style="margin-bottom: 0;">Instituto Superior Carlos María Carena</p>
             <h1 class="anton-sc-regular">Catálogo de Proyectos</h1>
         </header>
@@ -44,6 +44,14 @@
                             <a class="nav-link" href="{{ p.link }}/{{ p.id }}">{{ p.nombre }}</a>
                         </li>
                         {% endfor %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Editar</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/proyectosLista/">Proyectos</a></li>
+                                <li><a class="dropdown-item" href="/seccionesLista/">Secciones</a></li>
+                                <li><a class="dropdown-item" href="/articulosLista/">Artículos</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -54,7 +62,7 @@
             {% endblock %}
         </main>
         <footer class="container-fluid bg-dark text-center p-3 text-white mt-4">
-            <h6>Instituto Superior Dr. Carlos María Carena | 2024</h6>
+            <h6 style="color:#EFE1CE">Instituto Superior Dr. Carlos María Carena | 2024</h6>
         </footer>
     </div>
 </body>

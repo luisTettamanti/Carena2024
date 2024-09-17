@@ -7,6 +7,7 @@ class Proyecto(models.Model):
     descripcion = models.TextField()
     imagen = models.CharField(max_length=100)
     link = models.CharField(max_length=100, default='', null=True)
+    color = models.CharField(max_length=7, default='#0000FF', null=True)
 
     def __str__(self):
         return self.nombre

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div id="contenido" class="container">
+        <h2 class="pb-3">Sección</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% for field in form %}
+                <div class="form-group pb-3">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+{#            <div>#}
+{#                <label for="titulo">Título:</label>#}
+{#                {{ form.titulo }}#}
+{#                {{ form.titulo.errors }}#}
+{#            </div>#}
+{#            <div>#}
+{#                <label for="descripcion">Descripción:</label>#}
+{#                {{ form.descripcion }}#}
+{#                {{ form.descripcion.errors }}#}
+{#            </div>#}
+{#            <div>#}
+{#                <label for="imagen">Imagen:</label>#}
+{#                {{ form.imagen }}#}
+{#                {{ form.imagen.errors }}#}
+{#            </div>#}
+{#            <div>#}
+{#                <label for="idProyecto">Proyecto:</label>#}
+{#                {{ form.idProyecto }}#}
+{#                {{ form.idProyecto.errors }}#}
+{#            </div>#}
+{#            <div>#}
+{#                <label for="link">Link:</label>#}
+{#                {{ form.link }}#}
+{#                {{ form.link.errors }}#}
+{#            </div>#}
+
+{#            {{ form.as_p }}#}
+
+            <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+            <a class="btn btn-primary mt-3" onclick="history.back()">Cancelar</a>
+        </form>
+    </div>
+{% endblock %}

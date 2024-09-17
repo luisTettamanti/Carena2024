@@ -12,3 +12,6 @@ __pycache__/
 .vscode/
 .idea/
 *.swp
+
+# Base de Datos
+db.sqlite3

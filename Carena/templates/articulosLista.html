@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div id="contenido" class="container">
+        <div id="titulo" class="row pb-3">
+            <h2 class="col-10">Listado de Articulos</h2>
+            <div class="col-2 d-flex justify-content-end align-items-end mb-3">
+                <a class="btn btn-primary" href="/articuloAgregar/">Nuevo...</a>
+            </div>
+        </div>
+        <table class="table table-striped">
+            {% for a in articulos %}
+            <tr>
+                <td>{{ a.id }}</td>
+                <td>{{ a.titulo }}</td>
+                <td class="d-none d-sm-table-cell">{{ a.idSeccion }}</td>
+                <td class="d-none d-md-table-cell">{{ a.link }}</td>
+                <td>
+                    <div class="d-flex justify-content-end align-items-end mb-3">
+                        <a class="btn btn-primary" href="/articuloModificar/{{ a.id }}/">Modificar</a>
+                        <a class="btn btn-danger ms-1" href="/articuloBorrar/{{ a.id }}/">Borrar</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

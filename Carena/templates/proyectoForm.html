@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div id="contenido" class="container">
+        <h2 class="pb-3">Proyecto</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ proyectoform.as_p }}
+
+            <h3>Secciones</h3>
+            {{ seccionformset.management_form }}
+            <table class="table table-striped">
+                {% for form in seccionformset %}
+                    <tr>
+                        <td>{{ form.titulo }}</td>
+                        <td>{{ form.descripcion }}</td>
+                        <td>{{ form.imagen }}</td>
+                        <td>{{ form.link }}</td>
+                        <td>{{ form.DELETE }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+            <a class="btn btn-primary mt-3" onclick="history.back()">Cancelar</a>
+        </form>
+
+    </div>
+{% endblock %}
