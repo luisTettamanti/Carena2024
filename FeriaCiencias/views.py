@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from .models import Proyecto, Seccion, Articulo
 from .forms import seccionForm, proyectoForm, seccionFormSet, articuloForm
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.db.models import Q
 
 def index(request):
     proyectos = Proyecto.objects.all()
@@ -141,11 +142,31 @@ def proyectoAgregarModif(request, pk=None):
     })
 
 
-def seccionesLista(request):
-    secciones = Seccion.objects.all()
-    proyectos = Proyecto.objects.all()
-    context = {"proyectos": proyectos, "secciones": secciones}
-    return render(request, "seccionesLista.html", context)
+# def seccionesLista(request):
+    # secciones = Seccion.objects.all()
+    # proyectos = Proyecto.objects.all()
+    # context = {"proyectos": proyectos, "secciones": secciones}
+    # return render(request, "seccionesLista.html", context)
+
+
+class seccionesLista(ListView):
+    model = Seccion
+    template_name = 'seccionesLista.html'
+    context_object_name = 'secciones'
+    paginate_by = 7
+    extra_context = {'proyectos': Proyecto.objects.all()}
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            queryset = queryset.filter(idProyecto=query)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['query'] = self.request.GET.get('q', '')  # Enviar el valor de la búsqueda al contexto
+        return context
 
 
 def seccionAgregar(request):
@@ -183,6 +204,19 @@ class articulosLista(ListView):
     model = Articulo
     template_name = 'articulosLista.html'
     context_object_name = 'articulos'
+    paginate_by = 7
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            queryset = queryset.filter(Q(titulo__icontains=query) | Q(descripcion__icontains=query))
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['query'] = self.request.GET.get('q', '')  # Enviar el valor de la búsqueda al contexto
+        return context
 
 
 class articuloModificar(UpdateView):

@@ -3,9 +3,20 @@
 {% block content %}
     <div id="contenido" class="container">
         <div id="titulo" class="row pb-3">
-            <h2 class="col-10">Listado de Articulos</h2>
-            <div class="col-2 d-flex justify-content-end align-items-end mb-3">
-                <a class="btn btn-primary" href="/articuloAgregar/">Nuevo...</a>
+            <h2 class="col-9 col-md-6">Listado de Articulos</h2>
+            <form method="GET" class="d-none d-md-table-cell col-md-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="q" value="{{ query }}" \
+                        placeholder="Buscar en título o descripción...">
+                    <button class="btn btn-primary text-light" type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+            <div class="col-3 col-md-2 text-end">
+                <a class="btn btn-primary w-100" href="/articuloAgregar/">Nuevo...</a>
             </div>
         </div>
         <table class="table table-striped">
@@ -24,5 +35,29 @@
             </tr>
             {% endfor %}
         </table>
+
+        <div class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <a class="btn btn-outline-primary mb-3" href="?page=1">
+                    Primera
+                </a>
+                <a class="btn btn-outline-primary mb-3" href="?page={{ page_obj.previous_page_number }}">
+                    Anterior
+                </a>
+            {% endif %}
+
+            <span class="current-page btn btn-outline-light disabled text-primary mb-3">
+                {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a class="btn btn-outline-primary mb-3" href="?page={{ page_obj.next_page_number }}">
+                    Siguiente
+                </a>
+                <a class="btn btn-outline-primary mb-3" href="?page={{ page_obj.paginator.num_pages }}">
+                    Última
+                </a>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

@@ -16,7 +16,8 @@ urlpatterns = [
     path('proyectoForm/<int:pk>/', views.proyectoAgregarModif, name='proyectoagregarmodif'),
     path('proyectoConLista/<int:pk>/', views.proyectoConLista, name='proyectoconlista'),
 
-    path('seccionesLista/', views.seccionesLista, name='seccioneslista'),
+    # path('seccionesLista/', views.seccionesLista, name='seccioneslista'),
+    path('seccionesLista/', views.seccionesLista.as_view(), name='seccioneslista'),
     path('seccionAgregar/', views.seccionAgregar, name='seccionagregar'),
     path('seccionModificar/<int:pk>/', views.seccionModificar, name='seccionmodificar'),
     path('seccionBorrar/<int:pk>/', views.seccionBorrar, name='seccionborrar'),
