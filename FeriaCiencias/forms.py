@@ -1,6 +1,7 @@
 from django import forms
 from .models import Proyecto, Seccion, Articulo
 from django.forms.models import inlineformset_factory
+from django.contrib.auth.forms import AuthenticationForm
 
 class seccionForm(forms.ModelForm):
     class Meta:
@@ -13,7 +14,8 @@ class seccionForm(forms.ModelForm):
             'imagen': forms.TextInput(attrs={'class': 'form-control'}),
             'idProyecto': forms.Select(attrs={'class': 'form-select'}),
             'link': forms.TextInput(attrs={'class': 'form-control'}),
-            'descripcion': forms.Textarea(attrs={'class': 'form-control', 'style': 'background-color: ivory;'}),
+            'descripcion': forms.Textarea(attrs={'class': 'form-control'}),
+            # 'descripcion': forms.Textarea(attrs={'class': 'form-control', 'style': 'background-color: ivory;'}),
         }
 
     # def clean_titulo(self):
@@ -57,3 +59,20 @@ seccionFormSet = inlineformset_factory(
     extra=1,  # Número de formularios adicionales vacíos
     can_delete=True  # Permitir borrar secciones
 )
+
+
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(
+        label='Usuario',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Nombre de usuario'
+        })
+    )
+    password = forms.CharField(
+        label='Contraseña',
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Contraseña'
+        })
+    )

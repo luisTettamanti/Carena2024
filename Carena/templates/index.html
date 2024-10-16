@@ -17,5 +17,13 @@
 {% endblock %}
 {% block content %}
 <body>
+    <a href="{% url 'login' %}" class="btn btn-primary">Iniciar Sesión</a>
+    <a href="{% url 'logout' %}" class="btn btn-primary">Cerrar Sesión</a>
+    <br>
+    {% if user.is_authenticated %}
+        <p>Hola, {{ user.username }}!</p>
+    {% else %}
+        <p>Hola, autenticate para ingresar...!</p>
+    {% endif %}
 </body>
 {% endblock %}

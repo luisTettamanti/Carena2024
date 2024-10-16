@@ -205,6 +205,7 @@ class articulosLista(ListView):
     template_name = 'articulosLista.html'
     context_object_name = 'articulos'
     paginate_by = 7
+    extra_context = {'proyectos': Proyecto.objects.all()}
 
     def get_queryset(self):
         queryset = super().get_queryset()

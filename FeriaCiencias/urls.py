@@ -2,9 +2,17 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 
+from django.contrib.auth.views import LoginView
+from .forms import LoginForm
+
 urlpatterns = [
     path('index/', views.index, name='index'),
     path('', views.index, name='index'),
+
+    path('login/', LoginView.as_view(
+        template_name='registration/login.html',
+        authentication_form=LoginForm
+    ), name='login'),
 
     path('ia/proyecto/<int:pk>', views.proyecto, name='proyecto'),
     path('ia/seccion/<int:pk>/', views.seccion, name='seccion'),

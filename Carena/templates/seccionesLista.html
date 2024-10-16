@@ -7,7 +7,7 @@
             <form method="GET" class="d-none d-md-table-cell col-md-4">
                 <div class="input-group">
                     <select class="form-select" id="sel1" name="q" value="{{ query }}">
-                        <option></option>
+                        <option value="">Todas las secciones...</option>
                         {% for p in proyectos %}
                             <option value="{{ p.id }}" {% if p.id|stringformat:"s" == query %}selected{% endif %}>
                                 {{ p.nombre }}

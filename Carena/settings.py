@@ -130,3 +130,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configuraciones de autenticación
+LOGIN_URL = '/login/'  # URL de la página de login si se intenta acceder a una vista protegida
+LOGIN_REDIRECT_URL = '/'  # Redirección después de un login exitoso
+LOGOUT_REDIRECT_URL = '/'  # Redirección después de cerrar sesión
